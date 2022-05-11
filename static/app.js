@@ -21,3 +21,21 @@ data.forEach((dataRow) => {
     }
    );
 });
+
+function handleClick() {
+    let date = d3.select("#datetime").property("value");
+    let filteredData = tableData;
+    // if (a date is entered) {
+        // filter the default data to show only the date entered}
+    if (date) {
+        filteredData = filteredData.filter(row => row.datetime === date);
+    }
+    // Rebuild the table using the filteredData we did in the previous line
+    buildTable(filteredData);  
+}
+
+// adding code to "listen" to a user clicks
+d3.selectAll("#filter-btn").on("click", handleClick)
+
+// Build the table when the page loads
+buildTable(tableData);
